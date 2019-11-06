@@ -1,0 +1,28 @@
+Purpose: Automate the hyphenation of lyrics in Early New High German and placement into lilypond template as lyrics.
+Needs:
+  + Hyphenation API for Modern German
+  * A way to apply API to ENHG
+  * A Lilypond file with ERB lines to act as template
+  * An interface to easily run program on a text file 
+    * Bash interface e.g. `lyricly <source.txt> <template.erb.ly>` => filled in template file with all verses ly hyphenated.
+    * Flags for skipping verses (-s) and setting verses as markup verses (-c for column)
+
+TODO
+  * Research APIs
+  * Research available ENHG dictionaries
+  * Create erb/ly file
+  * Create interface with erb/ly file to set indeterminate number of lines in.
+
+Iterations
+Done:
+I1 erb.ly template REVISED just write to new temp file
+I2 Read txt file and write to a temp file through iterator
+
+ToDo:
+I3.0 Hyphenate English text with ly format
+I3.1 Provide language specification (Hyphenate modern German file in ly format before writing to tempfile)
+I3.2 Works for ENHG
+I4.0 Create exception and markup options
+I4.1 Proof against variations in input text doc
+I5 Make bash interface
+I6? Add verification with meter of notes

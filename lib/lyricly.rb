@@ -1,4 +1,4 @@
-source = "gilderoy_lyrics"
+source = "nun-freut-euch-lyrics"
 
 class Versify
   require "text/hyphen"
@@ -29,6 +29,17 @@ class Versify
     @verses
   end
 
+  def explode! verses
+    verses.each_key do |key|
+      words = verses[key].split
+      hyph_words = words.map! do |word|
+        hyph = Text::Hyphen.new(:language => "de", :left => 0, :right => 0)
+        .visualize(word, " -- ")
+      end
+      verses[key] = hyph_words.join(" ")
+    end
+  end
+
   def export
     File.open("tempfile", "w") do |file|
         if !@verses.empty?
@@ -44,5 +55,6 @@ class Versify
 end
 
 newfile = Versify.new source
-newfile.versify
+puts verses = newfile.versify
+puts newfile.explode!(verses)
 newfile.export
