@@ -1,17 +1,33 @@
 require "./lib/lyricly.rb"
 
-describe Versify do
+describe Lyricly do
   
   it "formats English document into Lilypond lyrics" do
+    subject = Lyricly.new("source-english")
+    verses = subject.versify
+    subject.explode!(verses)
+    subject.export(verses)
+    expect(File.open("tempfile", "r") { |file| file.read }).to eql(File.open("test-english", "r") { |file| file.read })
+
   end
 
   it "formats German document into Lilypond lyrics" do
+    subject = Lyricly.new("source-german")
+    verses = subject.versify
+    subject.explode!(verses)
+    subject.export(verses)
+    expect(File.open("tempfile", "r") { |file| file.read }).to eql(File.open("test-german", "r") { |file| file.read })
   end
 
   it "formats document into Lilypond markup" do
+    subject = Lyricly.new("source-german")
+    verses = subject.versify
+    subject.markup(verses)
+    subject.export(verses)
+    expect(File.open("tempfile", "r") { |file| file.read }).to eql(File.open("test-markup", "r") { |file| file.read })
   end
 
-  it "excepts user-specified verses" do
+  it "leaves out user-specified verses" do
   end
 
   it "ignores extra whitespace in source document" do

@@ -1,0 +1,40 @@
+\markup {{
+  \fill-line {
+	\hspace #1
+	\column {
+	  \null
+	  \line { 1. Nun freut euch, lieben Christen g’mein! }
+	  \line { Und laßt uns fröhlich springen, }
+	  \line { Daß wir getrost und all in ein }
+	  \line { Mit Lust und Liebe singen: }
+      \line { Was Gott an uns gewendet hat, }
+      \line { Und seine süße Wundertat; }
+      \line { Gar teu’r hat er’s erworben. }
+	  \null
+	}
+	\hspace #2
+	\column {
+	  \null
+	  \line { 5. Er sprach zu seinem lieben Sohn: }
+	  \line { Die Zeit ist hier zu’rbarmen, }
+	  \line { Fahr hin, meins Herzens werte Kron, }
+	  \line { Und sei das Heil der Armen, }
+      \line { Und hilf ihm aus der Sünden Not, }
+      \line { Erwürg für ihn den bittern Tod, }
+      \line { Und laß sie mit dir leben. }
+	  \null
+	}	
+    \column {
+	  \null
+	  \line { 10. Was ich getan hab und gelehrt, }
+	  \line { Das sollst du tun und lehren, }
+	  \line { Damit das Reich Gotts werd’ gemehrt, }
+      \line { Zu Lob und seinen Ehren, }
+      \line { Und hüt' dich vor der Menschen G’satz, }
+      \line { Davon verdirbt der edle Schatz, }
+      \line { Das laß ich dir zur Letzte. }
+	  \null
+	}
+	\hspace #1
+  }
+}}

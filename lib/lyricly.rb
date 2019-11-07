@@ -1,6 +1,4 @@
-source = "nun-freut-euch-lyrics"
-
-class Versify
+class Lyricly
   require "text/hyphen"
   require "./english_number_method.rb"
   attr_accessor :source, :verses, :lyrics
@@ -40,21 +38,19 @@ class Versify
     end
   end
 
-  def export
-    File.open("tempfile", "w") do |file|
-        if !@verses.empty?
-          @verses.each_key do |key|
+  def export content, destination="tempfile"
+    File.open(destination, "w") do |file|
+        if content.is_a?(Hash) && !content.empty?
+          content.each_key do |key|
             file.puts "#{key} = \lyricmode {"
             file.puts "#{@verses[key]} }\n\n"
           end
-        else
-          file.puts @lyrics
         end
     end
   end
 end
 
-newfile = Versify.new source
-puts verses = newfile.versify
-puts newfile.explode!(verses)
-newfile.export
+# newfile = Versify.new source
+# puts verses = newfile.versify
+# puts newfile.explode!(verses)
+# newfile.export(verses)
