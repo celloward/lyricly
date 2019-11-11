@@ -1,0 +1,19 @@
+verseOne = \lyricmode {
+  Nun freut euch, lie -- ben Chris -- ten g’mein!
+  Und laßt uns fröh -- lich sprin -- gen,
+  Daß wir ge -- Litrost und all in ein 
+  Mit Lust und Lie -- be sin -- gen:
+  Was Gott an uns ge -- wen -- det hat,
+  Und sei -- ne sü -- ße Wun -- der -- tat;
+  Gar teu’r hat er’s er -- wor -- ben.
+}
+
+verseTen = \lyricmode {
+  Was ich ge -- tan hab und ge -- lehrt,
+  Das sollst du tun und leh -- ren,
+  Da -- mit das Reich Gotts werd’ ge -- mehrt,
+  Zu Lob und sei -- nen Eh -- ren,
+  Und hüt' dich vor der Mensch -- en G’satz,
+  Da -- von ver -- dirbt der ed -- le Schatz,
+  Das laß ich dir zur Letz -- te.
+}

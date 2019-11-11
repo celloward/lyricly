@@ -1,56 +1,62 @@
+require "text/hyphen"
+require "numbers_and_words"
+
 class Lyricly
-  require "text/hyphen"
-  require "./english_number_method.rb"
   attr_accessor :source, :verses, :lyrics
   
-  def initialize source
+  def initialize source 
     @source = source
-    @tempfile = "tempfile"
     @lyrics = File.open(@source, "r") { |file| file.read }.split(/\n\n/)
+    @verses = versify(@lyrics)
   end
 
   def make_key string
     string = string.split
     number = string.select { |item| item if item.match(/\d/) }
-    string[string.index(number[0])] = englishNumber(number[0].to_i)
-    string[0] = string[0].downcase
-    string[1] = string[1].capitalize if string[0]
+    string[string.index(number[0])] = number[0].to_i.to_words
+    if string[0]
+      string[0] = string[0].downcase
+      string[1] = string[1].capitalize
+    end
     symbol = string.join.to_sym
   end
 
-  def versify
-    @verses = {}
-    @lyrics.each do |verse|
-      verse_array = verse.split(/\n/)
-      @verses[make_key(verse_array.reverse.pop)] = verse_array[1..verse_array.count-1].join("\n")
+  def versify lyrics
+    verses = {}
+    lyrics.each do |verse|
+      line = verse.split(/\n/)
+      verses[make_key(line.reverse.pop)] = line[1..line.count-1].join("\n")
     end
-    @verses
+    verses
   end
 
-  def explode! verses
-    verses.each_key do |key|
-      words = verses[key].split
+  def explode text
+    text.each_key do |key|
+      words = text[key].split
       hyph_words = words.map! do |word|
-        hyph = Text::Hyphen.new(:language => "de", :left => 0, :right => 0)
+        hyph = Text::Hyphen.new(:language => "en_us", :left => 1, :right => 1)
         .visualize(word, " -- ")
       end
-      verses[key] = hyph_words.join(" ")
+      text[key] = hyph_words.join(" ")
     end
   end
 
-  def export content, destination="tempfile"
+  def format_inline verses
+    if @verses.is_a?(Hash) && !@verses.empty?
+      @verses.each_key do |key|
+        file.puts "#{key} = \lyricmode {"
+        file.puts "#{@verses[key]} }\n\n"
+      end
+    end
+  end
+
+  def export destination="tempfile"
     File.open(destination, "w") do |file|
-        if content.is_a?(Hash) && !content.empty?
-          content.each_key do |key|
-            file.puts "#{key} = \lyricmode {"
-            file.puts "#{@verses[key]} }\n\n"
-          end
-        end
+      hyph_verses = explode(verses) 
+      format_inline(hyph_verses)
     end
   end
 end
 
-# newfile = Versify.new source
-# puts verses = newfile.versify
-# puts newfile.explode!(verses)
-# newfile.export(verses)
+# newfile = Lyricly.new("../spec/source-english")
+# newfile.export
